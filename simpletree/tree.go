@@ -1,6 +1,7 @@
 package simpletree
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -17,12 +18,32 @@ type tree struct {
 	Parent, FirstChild, NextSibling *tree
 	Name                            string
 	TreeType                        TreeType
-	// Dirs   []*Dir
 }
 
 func (t *tree) json() string {
 	data, _ := json.Marshal(t)
-	return string(data)
+	var buf bytes.Buffer
+	json.Indent(&buf, data, "", "  ")
+	return buf.String()
+}
+
+// func (t *tree) AddDir(name string) {
+// 	t := new(tree)
+// 	t.Name = name
+// 	if t.FirstChild == nil {
+// 		t.FirstChild = t
+// 		return
+// 	}
+
+// }
+
+func (t *tree) AddSiblint(_t *tree) {
+	for c := t; c != nil; c = c.NextSibling {
+		if c.NextSibling == nil {
+			c.NextSibling = _t
+			return
+		}
+	}
 }
 
 // func (d dir) consume() dir {
@@ -40,17 +61,6 @@ func (t *tree) json() string {
 // }
 
 // 深さ優先
-func eachTree(t *tree, pre, post func(t *tree)) {
-	if pre != nil {
-		pre(t)
-	}
-	for c := t.FirstChild; c != nil; c = c.NextSibling {
-		eachTree(c, pre, post)
-	}
-	if post != nil {
-		post(t)
-	}
-}
 
 type dirs []string
 
@@ -82,7 +92,7 @@ func (d dirs) current() string {
 */
 func add(t *tree, d dirs, v string) *tree {
 	for c := t.FirstChild; c != nil; c = c.NextSibling {
-		fmt.Println("hello")
+		// fmt.Println("hello")
 		d.consume()
 		fmt.Println(d.current())
 	}

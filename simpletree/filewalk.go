@@ -6,8 +6,9 @@ import (
 	"path/filepath"
 )
 
-func parse(dirPath string) error {
+func fileWalk(dirPath string) error {
 	err := filepath.Walk(dirPath, func(path string, info os.FileInfo, err error) error {
+
 		fmt.Println(path)
 		return err
 	})
