@@ -4,14 +4,6 @@ import (
 	"testing"
 )
 
-func TestAddSiblint(t *testing.T) {
-	tre := new(tree)
-	_t := new(tree)
-	_t.Name = "hello"
-	tre.AddSiblint(_t)
-	t.Log(tre.json())
-}
-
 func TestEachTree(t *testing.T) {
 	// tre := &tree{
 	// 	// Name: "one",
