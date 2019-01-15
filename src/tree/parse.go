@@ -10,16 +10,20 @@ func parse(dir string) (*tree, error) {
 	var c *tree // カレントディレクトリ
 	c = root
 
+	// 新しいフォルダをカレントディレクトの下の階層に作成
+	// カレントディクレトリを新しく作成したディレクトに移動
 	pre := func(name string) {
 		children := &tree{Name: name, TreeType: TreeTypeDir}
 		add(c, children)
 		c = children
 	}
 
+	// カレントディレクトリを1つ上の階層に移動
 	post := func(name string) {
 		c = c.Parent
 	}
 
+	// カレントディレクトリにファイル作成
 	main := func(name string) {
 		f := &tree{Name: name, TreeType: TreeTypeFile}
 		add(c, f)
