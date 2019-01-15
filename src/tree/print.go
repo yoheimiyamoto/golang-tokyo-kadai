@@ -5,6 +5,7 @@ import (
 	"os"
 )
 
+// treeをコマンドライン出力する関数です
 func print(t *tree) {
 	var s string
 

@@ -5,6 +5,7 @@ import (
 	"path/filepath"
 )
 
+// 対象のディレクトリ配下をtreeにパースする関数です。
 func parse(dir string) (*tree, error) {
 	root := &tree{Name: "root", TreeType: TreeTypeDir}
 	var c *tree // カレントディレクトリ
@@ -57,8 +58,9 @@ func fileWalk(dir string, pre, post, main func(name string)) error {
 }
 
 /*
-dst = 追加する先
-t = 追加する対象
+treeの配下にtreeを追加する関数です。
+dst = 追加する先のtree
+t = 追加するtree
 */
 func add(dst, t *tree) {
 	if dst == nil {
