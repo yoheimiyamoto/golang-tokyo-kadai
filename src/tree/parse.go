@@ -1,6 +1,7 @@
 package tree
 
 import (
+	"fmt"
 	"io/ioutil"
 	"path/filepath"
 )
@@ -30,9 +31,11 @@ func parse(dir, ext string) (*tree, error) {
 
 	// カレントディレクトリにファイル作成
 	main := func(name string) {
-		if _ext := filepath.Ext(name); _ext != "" {
-			if ext != "" && _ext[1:] != ext {
-				return
+		if ext != "" {
+			if _ext := filepath.Ext(name); _ext != "" {
+				if _ext != fmt.Sprintf(".%s", ext) {
+					return
+				}
 			}
 		}
 		f := &tree{Name: name, TreeType: TreeTypeFile}
