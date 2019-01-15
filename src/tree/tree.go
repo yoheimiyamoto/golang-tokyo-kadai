@@ -1,7 +1,7 @@
 package tree
 
-func Do(dir string, maxDepth int) error {
-	tre, err := parse(dir)
+func Do(dir string, maxDepth int, ext string) error {
+	tre, err := parse(dir, ext)
 	if err != nil {
 		return err
 	}

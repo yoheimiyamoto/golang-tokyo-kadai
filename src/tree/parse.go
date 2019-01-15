@@ -5,8 +5,12 @@ import (
 	"path/filepath"
 )
 
-// 対象のディレクトリ配下をtreeにパースする関数です。
-func parse(dir string) (*tree, error) {
+/*
+対象のディレクトリ配下をtreeにパースする関数です。
+dir = 対象のディレクトリパス
+ext = 対象のファイル拡張子
+*/
+func parse(dir, ext string) (*tree, error) {
 	root := &tree{Name: "root", TreeType: TreeTypeDir}
 	var c *tree // カレントディレクトリ
 	c = root
@@ -26,6 +30,9 @@ func parse(dir string) (*tree, error) {
 
 	// カレントディレクトリにファイル作成
 	main := func(name string) {
+		if ext != "" && filepath.Ext(name)[1:] != ext {
+			return
+		}
 		f := &tree{Name: name, TreeType: TreeTypeFile}
 		add(c, f)
 	}
