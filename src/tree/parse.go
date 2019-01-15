@@ -30,8 +30,10 @@ func parse(dir, ext string) (*tree, error) {
 
 	// カレントディレクトリにファイル作成
 	main := func(name string) {
-		if ext != "" && filepath.Ext(name)[1:] != ext {
-			return
+		if _ext := filepath.Ext(name); _ext != "" {
+			if ext != "" && _ext[1:] != ext {
+				return
+			}
 		}
 		f := &tree{Name: name, TreeType: TreeTypeFile}
 		add(c, f)
