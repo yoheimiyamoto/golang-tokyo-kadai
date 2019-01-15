@@ -3,7 +3,6 @@ package simpletree
 import (
 	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 type TreeType uint32
@@ -27,16 +26,6 @@ func (t *tree) json() string {
 	return buf.String()
 }
 
-// func (t *tree) AddDir(name string) {
-// 	t := new(tree)
-// 	t.Name = name
-// 	if t.FirstChild == nil {
-// 		t.FirstChild = t
-// 		return
-// 	}
-
-// }
-
 func (t *tree) AddSiblint(_t *tree) {
 	for c := t; c != nil; c = c.NextSibling {
 		if c.NextSibling == nil {
@@ -45,22 +34,6 @@ func (t *tree) AddSiblint(_t *tree) {
 		}
 	}
 }
-
-// func (d dir) consume() dir {
-// 	return d[:len(d)-1]
-// }
-
-// func (d dir) first() string {
-// 	return d[0]
-// }
-
-// func add(t *tree, d dir, name string) {
-// 	pre = func(t *tree) {
-// 		if d.first() == t.Name
-// 	}
-// }
-
-// 深さ優先
 
 type dirs []string
 
@@ -84,61 +57,3 @@ func (d dirs) current() string {
 	}
 	return d[0]
 }
-
-/*
-ディレクトをみつける、もしくは、ディレクトリがなければ新しいディレクトリを作る
-上記の後にdirsをconsumeしていく。
-
-*/
-func add(t *tree, d dirs, v string) *tree {
-	for c := t.FirstChild; c != nil; c = c.NextSibling {
-		// fmt.Println("hello")
-		d.consume()
-		fmt.Println(d.current())
-	}
-	// if t == nil {
-	// 	t = new(tree)
-	// 	t.Name = value
-	// 	t.TreeType = TreeTypeDir
-	// 	t.Namec
-	// 	return t
-	// }
-
-	// add(t, d, v)
-	// for c := t.FirstChild; c != nil; c = c.NextSibling {
-	// 	if c.Name == d.current() {
-	// 		d = d.consume()
-	// 		if d.isComplete() {
-	// 			c.Name = value
-	// 			return t
-	// 		}
-	// 		// fmt.Println(c.FirstChild)
-	// 		add(c.FirstChild, d, value)
-	// 	}
-	// }
-	return t
-}
-
-// func add(t *Tree, value int) *Tree {
-// 	if t == nil {
-// 		// Equivalent to return &tree{value: value}.
-// 		t = new(Tree)
-// 		t.Value = value
-// 		return t
-// 	}
-// 	if value < t.Value {
-// 		t.Left = add(t.Left, value)
-// 	} else {
-// 		t.Right = add(t.Right, value)
-// 	}
-// 	return t
-// }
-
-// // 幅優先
-// func eachTree2(t *tree) {
-// 	for c :=
-// }
-
-// func add(t *tree, p path, name string) *tree {
-// 	return t
-// }
