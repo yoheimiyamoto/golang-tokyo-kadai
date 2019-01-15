@@ -15,6 +15,22 @@ tree出力する対象のフォルダ。パラメータを省略した場合は�
 * `L`  
 出力する最大の階層の深さ。パラメータを省略した場合は最大の深さは100となります。 
 
+### 出力結果イメージ
+```
+.
+├── 1.txt
+├── dir1
+│    ├── 1.txt
+│    ├── 2.txt
+│    └── 3.txt
+└── dir2
+     ├── 1.txt
+     ├── 2.txt
+     └── dir2-1
+          ├── 1.txt
+```
+
+
 ## 参考
 https://qiita.com/tanksuzuki/items/7866768c36e13f09eedb
 https://github.com/xlab/treeprint
