@@ -1,4 +1,4 @@
-package simpletree
+package tree
 
 import (
 	"io/ioutil"
