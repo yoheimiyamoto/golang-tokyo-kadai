@@ -5,6 +5,5 @@ import (
 )
 
 func TestParse(t *testing.T) {
-	// tre, _ := parse("./sample")
-	// print(tre)
+	Do("./sample")
 }

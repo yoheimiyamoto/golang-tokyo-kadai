@@ -6,22 +6,27 @@ import (
 )
 
 func parse(dir string) (*tree, error) {
-	t := new(tree)
-	c := t // c = カレンドティレクトリ
+	root := &tree{Name: "root", TreeType: TreeTypeDir}
+	var c *tree // カレントディレクトリ
+	c = root
+
 	pre := func(name string) {
 		children := &tree{Name: name, TreeType: TreeTypeDir}
 		add(c, children)
 		c = children
 	}
+
 	post := func(name string) {
 		c = c.Parent
 	}
+
 	main := func(name string) {
 		f := &tree{Name: name, TreeType: TreeTypeFile}
 		add(c, f)
 	}
+
 	fileWalk(dir, pre, post, main)
-	return t, nil
+	return root, nil
 }
 
 func fileWalk(dir string, pre, post, main func(name string)) error {

@@ -1,27 +1,22 @@
 package tree
 
-import (
-	"bytes"
-	"encoding/json"
-)
-
-type TreeType uint32
-
-const (
-	TreeTypeDir TreeType = iota
-	TreeTypeFile
-)
-
-type tree struct {
-	// Parent, FirstChild, LastChild, PrevSibling, NextSibling *tree
-	Parent, FirstChild, LastChild, NextSibling *tree
-	Name                                       string
-	TreeType                                   TreeType
+func Do(dir string) error {
+	tre, err := parse(dir)
+	if err != nil {
+		return err
+	}
+	eachTree(tre, print, nil)
+	return nil
 }
 
-func (t *tree) json() string {
-	data, _ := json.Marshal(t)
-	var buf bytes.Buffer
-	json.Indent(&buf, data, "", "  ")
-	return buf.String()
+func eachTree(t *tree, pre, post func(t *tree)) {
+	if pre != nil {
+		pre(t)
+	}
+	for c := t.FirstChild; c != nil; c = c.NextSibling {
+		eachTree(c, pre, post)
+	}
+	if post != nil {
+		post(t)
+	}
 }
