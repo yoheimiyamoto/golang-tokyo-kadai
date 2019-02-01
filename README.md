@@ -34,5 +34,8 @@ tree出力する対象のフォルダ。パラメータを省略した場合は�
 
 
 ## 参考
-https://qiita.com/tanksuzuki/items/7866768c36e13f09eedb
-https://github.com/xlab/treeprint
+https://github.com/gosagawa/golangtokyo21/
+https://github.com/sh0e1/gotree
+https://github.com/po3rin/gotree
+https://github.com/mura-s/go-tree
+https://github.com/pankona/ki
